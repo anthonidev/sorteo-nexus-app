@@ -2,7 +2,7 @@
 import type { ParticipantData, ApiResponse } from '../types/participant';
 
 export class ParticipantService {
-    private static readonly API_BASE_URL = import.meta.env.PUBLIC_API_URL || 'http://localhost:8000';
+    private static readonly API_BASE_URL = import.meta.env.PUBLIC_API_URL
     private static readonly ENDPOINTS = {
         PARTICIPANTS: '/api/participants',
         HEALTH: '/health'

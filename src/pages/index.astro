@@ -37,14 +37,14 @@ import ParticipantForm from "../components/ParticipantForm.astro";
     <header
       class="bg-slate-800/60 backdrop-blur-xl border-b border-emerald-500/20 sticky top-0 z-40 shadow-2xl"
     >
-      <div class="max-w-6xl mx-auto px-4 py-4">
+      <div class="max-w-6xl mx-auto px-4 py-3">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-3">
             <div
-              class="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-400 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/25"
+              class="w-10 h-10 bg-gradient-to-r from-emerald-500 to-green-400 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/25"
             >
               <svg
-                class="w-7 h-7 text-white"
+                class="w-6 h-6 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -58,15 +58,15 @@ import ParticipantForm from "../components/ParticipantForm.astro";
               </svg>
             </div>
             <div>
-              <h1 class="text-xl font-bold text-white">Gran Sorteo 2025</h1>
-              <p class="text-sm text-emerald-200">
+              <h1 class="text-lg font-bold text-white">Gran Sorteo 2025</h1>
+              <p class="text-xs text-emerald-200">
                 ¡Participa y gana increíbles premios!
               </p>
             </div>
           </div>
           <div class="hidden md:flex items-center space-x-2 text-sm">
             <span
-              class="bg-gradient-to-r from-emerald-500 to-green-400 text-white px-4 py-2 rounded-full font-bold shadow-lg shadow-emerald-500/25 animate-pulse"
+              class="bg-gradient-to-r from-emerald-500 to-green-400 text-white px-3 py-1.5 rounded-full font-bold shadow-lg shadow-emerald-500/25 animate-pulse text-sm"
             >
               🎁 Premios valorados en S/ 6,000
             </span>
@@ -75,14 +75,15 @@ import ParticipantForm from "../components/ParticipantForm.astro";
       </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 py-12 relative z-10">
-      <div class="text-center mb-12">
-        <div class="relative inline-block mb-8">
+    <main class="max-w-5xl mx-auto px-4 py-8 relative z-10">
+      <!-- Hero Section - Más compacto -->
+      <div class="text-center mb-8">
+        <div class="relative inline-block mb-6">
           <div
-            class="w-28 h-28 bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400 rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 animate-pulse"
+            class="w-20 h-20 bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400 rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 animate-pulse"
           >
             <svg
-              class="w-14 h-14 text-white"
+              class="w-10 h-10 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -96,20 +97,16 @@ import ParticipantForm from "../components/ParticipantForm.astro";
             </svg>
           </div>
           <div
-            class="absolute -top-3 -right-3 w-8 h-8 bg-yellow-400 rounded-full animate-bounce shadow-lg"
+            class="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full animate-bounce shadow-lg"
           >
-            <div class="w-full h-full flex items-center justify-center text-lg">
+            <div class="w-full h-full flex items-center justify-center text-sm">
               ✨
             </div>
-          </div>
-          <div
-            class="absolute -bottom-2 -left-4 w-6 h-6 bg-green-400 rounded-full animate-ping"
-          >
           </div>
         </div>
 
         <h2
-          class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+          class="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight"
         >
           ¡Participa en nuestro
           <span
@@ -120,48 +117,50 @@ import ParticipantForm from "../components/ParticipantForm.astro";
         </h2>
 
         <p
-          class="text-xl text-emerald-100 max-w-2xl mx-auto mb-10 leading-relaxed"
+          class="text-lg text-emerald-100 max-w-2xl mx-auto mb-6 leading-relaxed"
         >
           Regístrate ahora y tendrás la oportunidad de ganar un iPhone 16 Pro.
           ¡Es completamente gratis y solo toma 1 minuto!
         </p>
 
+        <!-- Prizes Grid - Más compacto -->
         <div
-          class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10"
+          class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto mb-6"
         >
           <div
-            class="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 border border-emerald-500/30 shadow-xl shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all duration-300 hover:scale-105"
+            class="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-emerald-500/30 shadow-xl shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all duration-300 hover:scale-105"
           >
-            <div class="text-4xl mb-3">🎁</div>
-            <h3 class="font-bold text-white text-lg">Premio Principal</h3>
-            <p class="text-emerald-300 font-semibold text-lg">iPhone 16 Pro</p>
-            <p class="text-emerald-200 text-sm mt-1">Valor: S/ 6,000</p>
+            <div class="text-2xl mb-2">🎁</div>
+            <h3 class="font-bold text-white text-base">Premio Principal</h3>
+            <p class="text-emerald-300 font-semibold">iPhone 16 Pro</p>
+            <p class="text-emerald-200 text-sm">Valor: S/ 6,000</p>
           </div>
 
           <div
-            class="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 border border-emerald-500/30 shadow-xl shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all duration-300 hover:scale-105"
+            class="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-emerald-500/30 shadow-xl shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all duration-300 hover:scale-105"
           >
-            <div class="text-4xl mb-3">⚡</div>
-            <h3 class="font-bold text-white text-lg">Registro Rápido</h3>
+            <div class="text-2xl mb-2">⚡</div>
+            <h3 class="font-bold text-white text-base">Registro Rápido</h3>
             <p class="text-emerald-300 font-semibold">Solo 1 minuto</p>
-            <p class="text-emerald-200 text-sm mt-1">100% gratis</p>
+            <p class="text-emerald-200 text-sm">100% gratis</p>
           </div>
 
           <div
-            class="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 border border-emerald-500/30 shadow-xl shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all duration-300 hover:scale-105"
+            class="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-emerald-500/30 shadow-xl shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all duration-300 hover:scale-105"
           >
-            <div class="text-4xl mb-3">🔒</div>
-            <h3 class="font-bold text-white text-lg">100% Seguro</h3>
+            <div class="text-2xl mb-2">🔒</div>
+            <h3 class="font-bold text-white text-base">100% Seguro</h3>
             <p class="text-emerald-300 font-semibold">Datos protegidos</p>
-            <p class="text-emerald-200 text-sm mt-1">Sin spam</p>
+            <p class="text-emerald-200 text-sm">Sin spam</p>
           </div>
         </div>
 
+        <!-- Urgency Banner - Más pequeño -->
         <div
-          class="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-full inline-flex items-center space-x-3 shadow-2xl shadow-red-500/40 animate-pulse"
+          class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full inline-flex items-center space-x-2 shadow-2xl shadow-red-500/40 animate-pulse"
         >
           <svg
-            class="w-6 h-6"
+            class="w-5 h-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -172,47 +171,115 @@ import ParticipantForm from "../components/ParticipantForm.astro";
               stroke-width="2"
               d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
-          <span class="font-bold text-lg">¡Últimos días para participar!</span>
+          <span class="font-bold text-base">¡Últimos días para participar!</span
+          >
         </div>
       </div>
 
-      <div class="max-w-2xl mx-auto">
-        <ParticipantForm />
+      <!-- Layout con dos columnas en desktop -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <!-- Formulario -->
+        <div class="order-2 lg:order-1">
+          <ParticipantForm />
+        </div>
+
+        <!-- Información adicional -->
+        <div class="order-1 lg:order-2 space-y-6">
+          <!-- Instrucciones rápidas -->
+          <div
+            class="bg-slate-800/60 backdrop-blur-xl rounded-2xl p-6 border border-emerald-500/30 shadow-xl shadow-emerald-500/10"
+          >
+            <h3
+              class="text-xl font-bold text-white mb-4 flex items-center gap-2"
+            >
+              <span class="text-2xl">📝</span>
+              ¿Cómo participar?
+            </h3>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                >
+                  1
+                </div>
+                <p class="text-emerald-100">
+                  Completa el formulario con tus datos
+                </p>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                >
+                  2
+                </div>
+                <p class="text-emerald-100">Confirma tu registro</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                >
+                  3
+                </div>
+                <p class="text-emerald-100">¡Espera el sorteo el 6 de Junio!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Términos rápidos -->
+          <div
+            class="bg-slate-800/60 backdrop-blur-xl rounded-2xl p-6 border border-emerald-500/30 shadow-xl shadow-emerald-500/10"
+          >
+            <h3
+              class="text-lg font-bold text-white mb-3 flex items-center gap-2"
+            >
+              <span class="text-xl">📋</span>
+              Información Importante
+            </h3>
+            <div class="space-y-2 text-sm text-emerald-200">
+              <p>• Sorteo válido hasta el 6 de junio de 2025</p>
+              <p>• Resultados públicos y verificables</p>
+              <p>• Sin costos ocultos ni compras necesarias</p>
+              <p>• Datos 100% seguros y protegidos</p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
     <footer
-      class="mt-20 py-12 bg-slate-900/80 backdrop-blur-sm border-t border-emerald-500/20"
+      class="mt-16 py-8 bg-slate-900/80 backdrop-blur-sm border-t border-emerald-500/20"
     >
       <div class="max-w-4xl mx-auto px-4 text-center">
-        <div class="mb-8">
-          <h4 class="text-2xl font-bold mb-3 text-white">Gran Sorteo 2025</h4>
-          <p class="text-emerald-200 text-lg">
+        <div class="mb-6">
+          <h4 class="text-xl font-bold mb-2 text-white">Gran Sorteo 2025</h4>
+          <p class="text-emerald-200">
             Sorteo válido hasta el 6 de junio de 2025. Aplican términos y
             condiciones.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div class="text-center">
-            <div class="text-3xl mb-2">📅</div>
-            <h5 class="font-semibold text-emerald-300">Fecha del Sorteo</h5>
-            <p class="text-emerald-100">6 de Junio, 2025</p>
+            <div class="text-2xl mb-1">📅</div>
+            <h5 class="font-semibold text-emerald-300 text-sm">
+              Fecha del Sorteo
+            </h5>
+            <p class="text-emerald-100 text-sm">6 de Junio, 2025</p>
           </div>
           <div class="text-center">
-            <div class="text-3xl mb-2">🎯</div>
-            <h5 class="font-semibold text-emerald-300">Transparente</h5>
-            <p class="text-emerald-100">Sorteo público y verificable</p>
+            <div class="text-2xl mb-1">🎯</div>
+            <h5 class="font-semibold text-emerald-300 text-sm">Transparente</h5>
+            <p class="text-emerald-100 text-sm">Sorteo público y verificable</p>
           </div>
           <div class="text-center">
-            <div class="text-3xl mb-2">🎊</div>
-            <h5 class="font-semibold text-emerald-300">Sin Costo</h5>
-            <p class="text-emerald-100">Completamente gratuito</p>
+            <div class="text-2xl mb-1">🎊</div>
+            <h5 class="font-semibold text-emerald-300 text-sm">Sin Costo</h5>
+            <p class="text-emerald-100 text-sm">Completamente gratuito</p>
           </div>
         </div>
 
         <div
-          class="text-sm text-emerald-300 space-y-2 border-t border-emerald-500/20 pt-6"
+          class="text-xs text-emerald-300 space-y-1 border-t border-emerald-500/20 pt-4"
         >
           <p>© 2025 Gran Sorteo. Todos los derechos reservados.</p>
           <p>
