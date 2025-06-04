@@ -1,5 +1,4 @@
 ---
-// src/pages/index.astro
 import ParticipantForm from "../components/ParticipantForm.astro";
 ---
 
@@ -9,32 +8,117 @@ import ParticipantForm from "../components/ParticipantForm.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>Registro de Participantes</title>
+    <title>Registro al Sorteo - ¡Participa y Gana!</title>
     <link href="/src/styles/global.css" rel="stylesheet" />
   </head>
   <body
-    class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50"
+    class="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50"
   >
-    <!-- Header -->
     <header
-      class="bg-white/80 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-40"
+      class="bg-white/90 backdrop-blur-md border-b border-orange-100 sticky top-0 z-40 shadow-sm"
     >
-      <div class="max-w-4xl mx-auto px-4 py-4">
-        <h1 class="text-2xl font-bold text-gray-900">
-          Registro de Participantes
-        </h1>
+      <div class="max-w-6xl mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h1 class="text-xl font-bold text-gray-900">Gran Sorteo 2025</h1>
+              <p class="text-sm text-gray-600">
+                ¡Participa y gana increíbles premios!
+              </p>
+            </div>
+          </div>
+          <div class="hidden md:flex items-center space-x-2 text-sm">
+            <span
+              class="bg-red-100 text-red-700 px-3 py-1 rounded-full font-medium"
+            >
+              🎁 Premios valorados en S/ 6,000
+            </span>
+          </div>
+        </div>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-2xl mx-auto px-4 py-8">
-      <!-- Hero Section -->
-      <div class="text-center mb-8">
+    <main class="max-w-4xl mx-auto px-4 py-12">
+      <div class="text-center mb-12">
+        <div class="relative inline-block mb-6">
+          <div
+            class="w-24 h-24 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl animate-pulse"
+          >
+            <svg
+              class="w-12 h-12 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+              ></path>
+            </svg>
+          </div>
+          <div
+            class="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full animate-bounce"
+          >
+          </div>
+          <div
+            class="absolute -bottom-1 -left-3 w-4 h-4 bg-green-400 rounded-full animate-ping"
+          >
+          </div>
+        </div>
+
+        <h2
+          class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight"
+        >
+          ¡Participa en nuestro
+          <span
+            class="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent"
+          >
+            Gran Sorteo!
+          </span>
+        </h2>
+
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+          Regístrate ahora y tendrás la oportunidad de ganar un iphone 16. ¡Es
+          gratis y solo toma 1 minutos!
+        </p>
+
         <div
-          class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4"
+          class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto mb-8"
+        >
+          <div
+            class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 border border-orange-200 shadow-lg"
+          >
+            <div class="text-3xl mb-2">🎁</div>
+
+            <h3 class="font-bold text-gray-900">Premio</h3>
+            <p class="text-orange-600 font-semibold">iPhone 16 Pro</p>
+          </div>
+        </div>
+
+        <div
+          class="bg-red-500 text-white px-6 py-3 rounded-full inline-flex items-center space-x-2 shadow-lg"
         >
           <svg
-            class="w-8 h-8 text-white"
+            class="w-5 h-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -43,29 +127,32 @@ import ParticipantForm from "../components/ParticipantForm.astro";
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
-            ></path>
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
+          <span class="font-bold">¡Últimos días para participar!</span>
         </div>
-        <h2 class="text-3xl font-bold text-gray-900 mb-2">
-          ¡Únete a nosotros!
-        </h2>
-        <p class="text-gray-600 max-w-md mx-auto">
-          Completa el formulario para registrarte y ser parte de nuestra
-          comunidad.
-        </p>
       </div>
 
-      <!-- Form Component -->
-      <ParticipantForm />
+      <div class="max-w-2xl mx-auto">
+        <ParticipantForm />
+      </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-16 py-8 border-t border-gray-200">
-      <div class="max-w-2xl mx-auto px-4 text-center">
-        <p class="text-gray-500 text-sm">
-          © 2024 Registro de Participantes. Todos los derechos reservados.
-        </p>
+    <footer class="mt-20 py-12 bg-gray-900 text-white">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <div class="mb-6">
+          <h4 class="text-lg font-bold mb-2">Gran Sorteo 2025</h4>
+          <p class="text-gray-400">
+            Sorteo válido hasta el 6 de junio de 2025. Aplican términos y
+            condiciones.
+          </p>
+        </div>
+        <div class="text-sm text-gray-400 space-y-1">
+          <p>© 2025 Gran Sorteo. Todos los derechos reservados.</p>
+          <p>
+            Este sorteo es completamente gratuito y sin compromiso de compra.
+          </p>
+        </div>
       </div>
     </footer>
   </body>

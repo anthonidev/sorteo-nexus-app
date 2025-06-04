@@ -1,5 +1,5 @@
 ---
-// src/components/Confetti.astro
+
 ---
 
 <div id="confetti-container" class="fixed inset-0 pointer-events-none z-40">
@@ -57,14 +57,12 @@
 
       this.container.appendChild(confetti);
 
-      // Animate confetti
       requestAnimationFrame(() => {
         confetti.style.top = "100vh";
         confetti.style.transform += ` rotate(${Math.random() * 720}deg)`;
         confetti.style.opacity = "0";
       });
 
-      // Remove confetti after animation
       setTimeout(() => {
         if (confetti.parentNode) {
           confetti.parentNode.removeChild(confetti);
@@ -73,12 +71,10 @@
     }
   }
 
-  // Make ConfettiAnimation available globally with proper typing
   interface ConfettiAnimationConstructor {
     new (containerId?: string): ConfettiAnimation;
   }
 
-  // Extend the Window interface for TypeScript type checking
   (
     window as unknown as Window & {
       ConfettiAnimation: ConfettiAnimationConstructor;
