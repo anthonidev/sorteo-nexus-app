@@ -1,0 +1,70 @@
+---
+// src/components/FormInput.astro
+export interface Props {
+  id: string;
+  name: string;
+  type: "text" | "email" | "tel";
+  label: string;
+  placeholder: string;
+  required?: boolean;
+  icon: string;
+  error?: string;
+}
+
+const {
+  id,
+  name,
+  type,
+  label,
+  placeholder,
+  required = false,
+  icon,
+  error,
+} = Astro.props;
+---
+
+<div class="space-y-2">
+  <label for={id} class="block text-sm font-semibold text-gray-700">
+    {label}
+    {required && <span class="text-red-500">*</span>}
+  </label>
+  <div class="relative">
+    <input
+      type={type}
+      id={id}
+      name={name}
+      required={required}
+      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 outline-none bg-gray-50 focus:bg-white peer"
+      placeholder={placeholder}
+      data-field={name}
+    />
+    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+      <Fragment set:html={icon} />
+    </div>
+  </div>
+  <p
+    id={`${id}-error`}
+    class="text-red-500 text-sm hidden transition-all duration-200"
+  >
+  </p>
+</div>
+
+<style>
+  .peer:invalid:not(:placeholder-shown) {
+    border-color: rgb(239 68 68); /* red-500 */
+  }
+
+  .peer:valid:not(:placeholder-shown) {
+    border-color: rgb(34 197 94); /* green-500 */
+  }
+
+  .peer:focus:invalid:not(:placeholder-shown) {
+    border-color: rgb(239 68 68);
+    box-shadow: 0 0 0 2px rgb(239 68 68 / 0.2);
+  }
+
+  .peer:focus:valid:not(:placeholder-shown) {
+    border-color: rgb(34 197 94);
+    box-shadow: 0 0 0 2px rgb(34 197 94 / 0.2);
+  }
+</style>

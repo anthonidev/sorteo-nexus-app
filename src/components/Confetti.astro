@@ -1,0 +1,87 @@
+---
+// src/components/Confetti.astro
+---
+
+<div id="confetti-container" class="fixed inset-0 pointer-events-none z-40">
+</div>
+
+<script>
+  class ConfettiAnimation {
+    private container: HTMLElement;
+    private colors: string[] = [
+      "#ff6b6b",
+      "#4ecdc4",
+      "#45b7d1",
+      "#96ceb4",
+      "#ffeaa7",
+      "#dda0dd",
+      "#ff9ff3",
+      "#54a0ff",
+    ];
+
+    constructor(containerId: string = "confetti-container") {
+      const container = document.getElementById(containerId);
+      if (!container) {
+        throw new Error(`Container with id "${containerId}" not found`);
+      }
+      this.container = container;
+    }
+
+    public trigger(): void {
+      if (!this.container) return;
+
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          this.createConfettiPiece();
+        }, i * 50);
+      }
+    }
+
+    private createConfettiPiece(): void {
+      const confetti = document.createElement("div");
+      const size = Math.random() * 10 + 5;
+
+      confetti.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        background-color: ${this.colors[Math.floor(Math.random() * this.colors.length)]};
+        left: ${Math.random() * 100}%;
+        top: -10px;
+        border-radius: 50%;
+        transform: rotate(${Math.random() * 360}deg);
+        transition: all 3s ease-out;
+        pointer-events: none;
+        z-index: 1000;
+      `;
+
+      this.container.appendChild(confetti);
+
+      // Animate confetti
+      requestAnimationFrame(() => {
+        confetti.style.top = "100vh";
+        confetti.style.transform += ` rotate(${Math.random() * 720}deg)`;
+        confetti.style.opacity = "0";
+      });
+
+      // Remove confetti after animation
+      setTimeout(() => {
+        if (confetti.parentNode) {
+          confetti.parentNode.removeChild(confetti);
+        }
+      }, 3000);
+    }
+  }
+
+  // Make ConfettiAnimation available globally with proper typing
+  interface ConfettiAnimationConstructor {
+    new (containerId?: string): ConfettiAnimation;
+  }
+
+  // Extend the Window interface for TypeScript type checking
+  (
+    window as unknown as Window & {
+      ConfettiAnimation: ConfettiAnimationConstructor;
+    }
+  ).ConfettiAnimation = ConfettiAnimation as ConfettiAnimationConstructor;
+</script>
