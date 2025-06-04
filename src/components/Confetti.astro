@@ -2,22 +2,25 @@
 
 ---
 
-<div id="confetti-container" class="fixed inset-0 pointer-events-none z-40">
+<div id="confetti-container" class="fixed inset-0 pointer-events-none z-50">
 </div>
 
 <script>
   class ConfettiAnimation {
     private container: HTMLElement;
     private colors: string[] = [
-      "#ff6b6b",
-      "#4ecdc4",
-      "#45b7d1",
-      "#96ceb4",
-      "#ffeaa7",
-      "#dda0dd",
-      "#ff9ff3",
-      "#54a0ff",
+      "#10b981", // emerald-500
+      "#34d399", // emerald-400
+      "#6ee7b7", // emerald-300
+      "#22c55e", // green-500
+      "#4ade80", // green-400
+      "#84cc16", // lime-500
+      "#fbbf24", // amber-400
+      "#f59e0b", // amber-500
+      "#06b6d4", // cyan-500
+      "#0ea5e9", // sky-500
     ];
+    private shapes: string[] = ["circle", "square", "triangle"];
 
     constructor(containerId: string = "confetti-container") {
       const container = document.getElementById(containerId);
@@ -30,44 +33,143 @@
     public trigger(): void {
       if (!this.container) return;
 
-      for (let i = 0; i < 100; i++) {
+      // Crear más confeti para un efecto más espectacular
+      for (let i = 0; i < 150; i++) {
         setTimeout(() => {
           this.createConfettiPiece();
-        }, i * 50);
+        }, i * 30);
       }
+
+      // Segundo burst después de un segundo
+      setTimeout(() => {
+        for (let i = 0; i < 100; i++) {
+          setTimeout(() => {
+            this.createConfettiPiece();
+          }, i * 20);
+        }
+      }, 1000);
     }
 
     private createConfettiPiece(): void {
       const confetti = document.createElement("div");
-      const size = Math.random() * 10 + 5;
+      const size = Math.random() * 12 + 6;
+      const shape = this.shapes[Math.floor(Math.random() * this.shapes.length)];
+      const color = this.colors[Math.floor(Math.random() * this.colors.length)];
+
+      // Velocidad y dirección aleatoria
+      const velocityX = (Math.random() - 0.5) * 600;
+      const velocityY = Math.random() * -400 - 200;
+      const rotation = Math.random() * 360;
+      const rotationSpeed = (Math.random() - 0.5) * 720;
+
+      let borderRadius = "50%";
+      if (shape === "square") {
+        borderRadius = "0%";
+      } else if (shape === "triangle") {
+        borderRadius = "0%";
+      }
 
       confetti.style.cssText = `
         position: absolute;
         width: ${size}px;
         height: ${size}px;
-        background-color: ${this.colors[Math.floor(Math.random() * this.colors.length)]};
+        background-color: ${color};
         left: ${Math.random() * 100}%;
-        top: -10px;
-        border-radius: 50%;
-        transform: rotate(${Math.random() * 360}deg);
-        transition: all 3s ease-out;
+        top: -20px;
+        border-radius: ${borderRadius};
+        transform: rotate(${rotation}deg);
+        transition: none;
         pointer-events: none;
         z-index: 1000;
+        box-shadow: 0 0 6px ${color}40;
       `;
+
+      // Crear triángulo si es necesario
+      if (shape === "triangle") {
+        confetti.style.width = "0";
+        confetti.style.height = "0";
+        confetti.style.backgroundColor = "transparent";
+        confetti.style.borderLeft = `${size / 2}px solid transparent`;
+        confetti.style.borderRight = `${size / 2}px solid transparent`;
+        confetti.style.borderBottom = `${size}px solid ${color}`;
+      }
 
       this.container.appendChild(confetti);
 
-      requestAnimationFrame(() => {
-        confetti.style.top = "100vh";
-        confetti.style.transform += ` rotate(${Math.random() * 720}deg)`;
-        confetti.style.opacity = "0";
-      });
+      // Animación física más realista
+      this.animateConfetti(confetti, velocityX, velocityY, rotationSpeed);
 
+      // Remover después de 5 segundos
       setTimeout(() => {
         if (confetti.parentNode) {
           confetti.parentNode.removeChild(confetti);
         }
-      }, 3000);
+      }, 5000);
+    }
+
+    private animateConfetti(
+      element: HTMLElement,
+      velocityX: number,
+      velocityY: number,
+      rotationSpeed: number
+    ): void {
+      const gravity = 800; // px/s²
+      const damping = 0.98;
+      const startTime = performance.now();
+      const startLeft = parseFloat(element.style.left);
+
+      const animate = (currentTime: number) => {
+        const deltaTime = (currentTime - startTime) / 1000;
+
+        // Calcular nueva posición
+        const newY =
+          velocityY * deltaTime + 0.5 * gravity * deltaTime * deltaTime;
+        const newX = startLeft + velocityX * deltaTime * damping;
+        const newRotation = rotationSpeed * deltaTime;
+
+        // Aplicar transformaciones
+        element.style.top = `${Math.max(-20, newY)}px`;
+        element.style.left = `${newX}%`;
+        element.style.transform = `rotate(${newRotation}deg)`;
+
+        // Efecto de desvanecimiento hacia el final
+        if (deltaTime > 3) {
+          const fadeProgress = (deltaTime - 3) / 2;
+          element.style.opacity = `${Math.max(0, 1 - fadeProgress)}`;
+        }
+
+        // Continuar animación si el elemento sigue visible
+        if (
+          deltaTime < 5 &&
+          parseFloat(element.style.top) < window.innerHeight + 100
+        ) {
+          requestAnimationFrame(animate);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    }
+
+    // Método para limpiar todo el confeti
+    public clear(): void {
+      while (this.container.firstChild) {
+        this.container.removeChild(this.container.firstChild);
+      }
+    }
+
+    // Método para crear un efecto de celebración continua
+    public celebration(duration: number = 3000): void {
+      const interval = setInterval(() => {
+        for (let i = 0; i < 10; i++) {
+          setTimeout(() => {
+            this.createConfettiPiece();
+          }, i * 50);
+        }
+      }, 200);
+
+      setTimeout(() => {
+        clearInterval(interval);
+      }, duration);
     }
   }
 
@@ -81,3 +183,15 @@
     }
   ).ConfettiAnimation = ConfettiAnimation as ConfettiAnimationConstructor;
 </script>
+
+<style>
+  /* Asegurar que el contenedor de confeti esté por encima de todo excepto los modales */
+  #confetti-container {
+    z-index: 45;
+  }
+
+  /* Optimización de rendimiento para las animaciones */
+  #confetti-container > div {
+    will-change: transform, opacity;
+  }
+</style>
