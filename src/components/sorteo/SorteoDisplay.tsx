@@ -22,7 +22,6 @@ interface SorteoDisplayProps {
 
 export default function SorteoDisplay({
   remainingParticipants,
-  currentIndex,
   isSpinning,
   showSadEmojis,
   currentAttempt,

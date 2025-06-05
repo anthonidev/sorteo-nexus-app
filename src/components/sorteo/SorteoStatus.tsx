@@ -8,10 +8,7 @@ interface SorteoStatusProps {
   eliminatedParticipants: ParticipantListItem[];
 }
 
-export default function SorteoStatus({
-  currentAttempt,
-  eliminatedParticipants,
-}: SorteoStatusProps) {
+export default function SorteoStatus({ currentAttempt }: SorteoStatusProps) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
