@@ -3,7 +3,7 @@ export const APP_CONFIG = {
     name: 'Sorteo iPhone 16 Pro - Nexus H. Global',
     description: 'Participa en nuestro exclusivo sorteo mensual del iPhone 16 Pro. Una iniciativa de Nexus H. Global para nuestra comunidad.',
     version: '1.0.0',
-    logo: '/logo.png' // Asegúrate de agregar el logo
+    logo: '/logo.png'
 } as const
 
 export const COMPANY_INFO = {
@@ -12,9 +12,9 @@ export const COMPANY_INFO = {
     email: 'sorteo@nexushglobal.com',
     phone: '+51 999 888 777',
     colors: {
-        primary: '#1a365d', // Azul corporativo
+        primary: '#1a365d',
         secondary: '#2d5aa0',
-        accent: '#10b981' // Mantener el verde para el sorteo
+        accent: '#10b981'
     }
 } as const
 
