@@ -26,7 +26,7 @@ declare global {
                 event_label?: string
                 value?: number
                 description?: string
-                [key: string]: any
+                [key: string]: unknown
             }
         ) => void
     }

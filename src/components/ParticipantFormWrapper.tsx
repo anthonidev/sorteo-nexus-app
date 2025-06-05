@@ -2,14 +2,14 @@
 
 import { useConfetti } from "@/hook/useConfetti";
 import ParticipantForm from "./ParticipantForm";
+import { ParticipantFormData } from "@/lib/schemas/participant";
 
 export default function ParticipantFormWrapper() {
   const { fireSuccessConfetti } = useConfetti();
 
-  const handleSuccess = (data: any) => {
+  const handleSuccess = (data: ParticipantFormData) => {
     console.log("Participante registrado:", data);
 
-    // Google Analytics tracking
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "form_submit", {
         event_category: "sorteo",
@@ -18,15 +18,12 @@ export default function ParticipantFormWrapper() {
       });
     }
 
-    // Confeti inmediato al enviar el formulario (antes del mensaje de éxito)
     fireSuccessConfetti();
 
-    // Efecto de vibración en dispositivos móviles (si está disponible)
     if (typeof window !== "undefined" && "vibrate" in navigator) {
       navigator.vibrate([200, 100, 200]);
     }
 
-    // Scroll suave hacia arriba para mejor UX
     if (typeof window !== "undefined") {
       window.scrollTo({
         top: 0,
@@ -38,7 +35,6 @@ export default function ParticipantFormWrapper() {
   const handleError = (error: string) => {
     console.error("Error al registrar:", error);
 
-    // Google Analytics error tracking
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("event", "form_error", {
         event_category: "sorteo",
@@ -47,7 +43,6 @@ export default function ParticipantFormWrapper() {
       });
     }
 
-    // Efecto de vibración de error en dispositivos móviles
     if (typeof window !== "undefined" && "vibrate" in navigator) {
       navigator.vibrate([100, 50, 100, 50, 100]);
     }

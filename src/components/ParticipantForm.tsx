@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import SuccessMessage from "./SuccessMessage";
 
 interface ParticipantFormProps {
-  onSuccess?: (data: any) => void;
+  onSuccess?: (data: ParticipantData) => void;
   onError?: (error: string) => void;
 }
 
@@ -50,15 +50,23 @@ export default function ParticipantForm({
       const result = await createParticipant(data);
 
       if (result.success) {
-        setSuccessData(result.data!);
-        setSubmitMessage({
-          type: "success",
-          text:
-            result.message ||
-            "¡Registro exitoso! Ya estás participando en el sorteo.",
-        });
-        reset();
-        onSuccess?.(result.data);
+        if (result.data) {
+          setSuccessData(result.data);
+          setSubmitMessage({
+            type: "success",
+            text:
+              result.message ||
+              "¡Registro exitoso! Ya estás participando en el sorteo.",
+          });
+          reset();
+          onSuccess?.(result.data);
+        } else {
+          setSubmitMessage({
+            type: "error",
+            text: "Error al registrar. Por favor intenta nuevamente.",
+          });
+          onError?.("Error al registrar. Por favor intenta nuevamente.");
+        }
       } else {
         setSubmitMessage({
           type: "error",
@@ -69,6 +77,7 @@ export default function ParticipantForm({
         onError?.(result.message);
       }
     } catch (error) {
+      console.error("Error al crear participante:", error);
       const errorMessage =
         "Ocurrió un error inesperado. Por favor intenta nuevamente.";
       setSubmitMessage({

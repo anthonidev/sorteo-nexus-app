@@ -23,7 +23,7 @@ export const participantSchema = z.object({
 
 export type ParticipantFormData = z.infer<typeof participantSchema>
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T> {
     success: boolean
     message: string
     data?: T
