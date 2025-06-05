@@ -4,7 +4,7 @@ import { ParticipantListItem } from "@/lib/schemas/participants";
 import { AnimatePresence, motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import SorteoDisplay from "./SorteoDisplay";
-import SorteoControls from "./SorteoControls";
+import SorteoLeverControl from "./SorteoLeverControl";
 import SorteoStatus from "./SorteoStatus";
 import EliminatedList from "./EliminatedList";
 import WinnerModal from "./WinnerModal";
@@ -23,7 +23,6 @@ export default function SorteoMachine({
   onClose,
   onWinner,
 }: SorteoMachineProps) {
-  // Usar el hook personalizado para manejar toda la lógica
   const {
     isSpinning,
     currentIndex,
@@ -51,66 +50,62 @@ export default function SorteoMachine({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/98 backdrop-blur-lg z-50 flex items-center justify-center p-4 overflow-y-auto"
           onClick={(e) =>
             e.target === e.currentTarget && !isSpinning && onClose()
           }
         >
+          {/* Efectos de fondo animados */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl animate-pulse"></div>
+            <div
+              className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-500/10 rounded-full blur-3xl animate-pulse"
+              style={{ animationDelay: "1000ms" }}
+            ></div>
+            <div
+              className="absolute top-3/4 left-1/2 w-64 h-64 bg-emerald-700/10 rounded-full blur-2xl animate-pulse"
+              style={{ animationDelay: "2000ms" }}
+            ></div>
+
+            {/* Líneas de energía */}
+            {(isSpinning || showResult) && (
+              <>
+                {[...Array(12)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-px h-full bg-gradient-to-b from-transparent via-emerald-400/20 to-transparent"
+                    style={{ left: `${8.33 * i}%` }}
+                    animate={{
+                      opacity: [0, 0.5, 0],
+                      scaleY: [0.5, 1, 0.5],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: i * 0.1,
+                    }}
+                  />
+                ))}
+              </>
+            )}
+          </div>
+
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 500 }}
-            className="bg-gradient-to-br from-gray-900 via-emerald-950 to-gray-900 rounded-3xl border-2 border-emerald-500/40 shadow-2xl shadow-emerald-500/30 p-8 max-w-5xl w-full relative overflow-hidden max-h-[95vh] overflow-y-auto"
+            className="bg-gradient-to-br from-gray-900 via-emerald-950/50 to-gray-900 rounded-3xl border-2 border-emerald-500/40 shadow-2xl shadow-emerald-500/30 p-8 max-w-7xl w-full relative overflow-hidden max-h-[95vh] overflow-y-auto"
           >
-            {/* Efectos de fondo */}
-            <div className="absolute inset-0 opacity-30">
-              <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl animate-pulse"></div>
-              <div
-                className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-green-500/15 rounded-full blur-2xl animate-pulse"
-                style={{ animationDelay: "1000ms" }}
-              ></div>
-              <div
-                className="absolute top-3/4 left-1/2 w-48 h-48 bg-emerald-700/10 rounded-full blur-xl animate-pulse"
-                style={{ animationDelay: "2000ms" }}
-              ></div>
-            </div>
+            {/* Efectos de luz en los bordes */}
 
             <div className="relative z-10">
-              {/* Header */}
-              <div className="mb-8 flex justify-center space-x-6 items-center">
-                <motion.div
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ type: "spring", damping: 15, stiffness: 300 }}
-                  className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-emerald-400 to-green-600 rounded-full mb-6 shadow-lg shadow-emerald-500/50"
-                >
-                  <span className="text-4xl">🎰</span>
-                </motion.div>
-                <div className="flex flex-col">
-                  <motion.h2
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="text-3xl sm:text-4xl font-bold text-white mb-3 bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent"
-                  >
-                    Sorteo de Eliminación
-                  </motion.h2>
+              {/* Header mejorado */}
 
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="text-gray-300 text-lg mb-6"
-                  >
-                    {sorteoStats.remainingCount} participantes restantes
-                  </motion.p>
-                </div>
-              </div>
-
-              <div className="grid lg:grid-cols-2 gap-8">
-                {/* Pantalla de sorteo */}
-                <div className="lg:order-1 lg:col-span-1">
+              {/* Layout principal mejorado */}
+              <div className="grid lg:grid-cols-3 gap-8">
+                {/* Pantalla de sorteo - Columna principal */}
+                <div className="lg:col-span-2 lg:order-1">
                   <SorteoDisplay
                     remainingParticipants={remainingParticipants}
                     currentIndex={currentIndex}
@@ -123,30 +118,37 @@ export default function SorteoMachine({
                   />
                 </div>
 
-                {/* Panel de control */}
-                <div className="lg:order-2 flex flex-col justify-between">
-                  <div>
+                {/* Panel de control lateral */}
+                <div className="lg:col-span-1 lg:order-2 flex flex-col justify-between space-y-6">
+                  {/* Estado del sorteo */}
+                  <div className="space-y-6">
                     <SorteoStatus
                       currentAttempt={currentAttempt}
                       eliminatedParticipants={eliminatedParticipants}
                     />
-                    <EliminatedList
-                      eliminatedParticipants={eliminatedParticipants}
-                    />
+
+                    {/* Lista de eliminados en un contenedor con scroll */}
+                    <div className="max-h-60 overflow-y-auto">
+                      <EliminatedList
+                        eliminatedParticipants={eliminatedParticipants}
+                      />
+                    </div>
                   </div>
 
-                  <SorteoControls
-                    isSpinning={isSpinning}
-                    showResult={showResult}
-                    currentAttempt={currentAttempt}
-                    remainingParticipants={remainingParticipants}
-                    onStartSorteo={startSorteo}
-                    onClose={onClose}
-                  />
+                  {/* Control de palanca */}
+                  <div className="mt-auto">
+                    <SorteoLeverControl
+                      isSpinning={isSpinning}
+                      showResult={showResult}
+                      currentAttempt={currentAttempt}
+                      remainingParticipants={remainingParticipants}
+                      onStartSorteo={startSorteo}
+                      onClose={onClose}
+                    />
+                  </div>
                 </div>
               </div>
 
-              {/* Modal de ganador */}
               <WinnerModal
                 winner={winner}
                 showResult={showResult}
@@ -154,6 +156,29 @@ export default function SorteoMachine({
                 onClose={onClose}
               />
             </div>
+
+            {/* Efectos de partículas de fondo */}
+            {isSpinning && (
+              <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                {[...Array(30)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-emerald-400/60 rounded-full"
+                    animate={{
+                      x: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                      y: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                      opacity: [0, 1, 0],
+                      scale: [0, 1, 0],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: i * 0.1,
+                    }}
+                  />
+                ))}
+              </div>
+            )}
           </motion.div>
         </motion.div>
       )}
