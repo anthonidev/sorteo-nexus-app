@@ -51,15 +51,14 @@ export default function ParticipantsList({
 
   const handleWinner = (winnerData: ParticipantListItem) => {
     setWinner(winnerData);
-    // Aquí podrías enviar el resultado a un backend o guardarlo localmente
     console.log("Ganador del sorteo:", winnerData);
   };
 
   return (
     <>
-      <div className="space-y-6">
+      <div className="space-y-6 h-full flex flex-col overflow-hidden">
         {/* Header con estadísticas */}
-        <div className="bg-gradient-to-r from-emerald-500/10 to-green-500/10 border border-emerald-500/30 rounded-2xl p-6 backdrop-blur-sm">
+        <div className="bg-gradient-to-r from-emerald-500/10 to-green-500/10 border border-emerald-500/30 rounded-2xl p-6 backdrop-blur-sm flex-shrink-0">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <h2 className="text-2xl font-bold text-white mb-2 flex items-center">
@@ -105,7 +104,7 @@ export default function ParticipantsList({
 
         {/* Barra de búsqueda */}
         {participants.length > 0 && (
-          <div className="relative">
+          <div className="relative flex-shrink-0">
             <input
               type="text"
               placeholder="Buscar por nombre o email..."
@@ -119,99 +118,102 @@ export default function ParticipantsList({
           </div>
         )}
 
-        {/* Lista de participantes */}
-        {participants.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-4xl text-gray-600">👥</span>
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-2">
-              No hay participantes registrados
-            </h3>
-            <p className="text-gray-400">
-              Los participantes aparecerán aquí una vez que se registren para el
-              sorteo.
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {/* Información de resultados filtrados */}
-            {searchTerm && (
-              <div className="text-sm text-gray-400 mb-4">
-                Mostrando {filteredParticipants.length} de {total} participantes
-                {filteredParticipants.length === 0 && (
-                  <span className="ml-2 text-yellow-400">
-                    - No se encontraron coincidencias
-                  </span>
-                )}
+        {/* Lista de participantes con scroll interno */}
+        <div className="flex-1 min-h-0 overflow-hidden">
+          {participants.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-4xl text-gray-600">👥</span>
               </div>
-            )}
-
-            {/* Grid de participantes */}
-            <div className="grid gap-4">
-              <AnimatePresence mode="popLayout">
-                {(searchTerm ? filteredParticipants : participants).map(
-                  (participant, index) => (
-                    <motion.div
-                      key={participant.id}
-                      layout
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className="bg-gray-800/60 border border-gray-700/50 rounded-xl p-4 sm:p-6 backdrop-blur-sm hover:border-emerald-500/50 transition-all duration-300 group"
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                        {/* Avatar y nombre */}
-                        <div className="flex items-center space-x-4 flex-1">
-                          <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:shadow-emerald-500/30 transition-shadow">
-                            {participant.fullName.charAt(0).toUpperCase()}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h3 className="text-white font-semibold text-lg group-hover:text-emerald-400 transition-colors">
-                              {participant.fullName}
-                            </h3>
-                            <p className="text-gray-400 text-sm break-all">
-                              {participant.email}
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* Información adicional */}
-                        <div className="sm:text-right space-y-1">
-                          <div className="flex sm:flex-col items-start sm:items-end gap-2 sm:gap-1">
-                            <div className="flex items-center text-gray-400 text-sm">
-                              <span className="mr-1">📱</span>
-                              <span>{formatPhone(participant.phone)}</span>
-                            </div>
-                            <div className="flex items-center text-gray-400 text-xs">
-                              <span className="mr-1">⏰</span>
-                              <span>{formatDate(participant.createdAt)}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* ID para referencia (solo visible en hover) */}
-                      <div className="mt-3 pt-3 border-t border-gray-700/50 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <p className="text-xs text-gray-500 font-mono">
-                          ID: {participant.id}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )
-                )}
-              </AnimatePresence>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                No hay participantes registrados
+              </h3>
+              <p className="text-gray-400">
+                Los participantes aparecerán aquí una vez que se registren para
+                el sorteo.
+              </p>
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="h-full flex flex-col">
+              {/* Información de resultados filtrados */}
+              {searchTerm && (
+                <div className="text-sm text-gray-400 mb-4 flex-shrink-0">
+                  Mostrando {filteredParticipants.length} de {total}{" "}
+                  participantes
+                  {filteredParticipants.length === 0 && (
+                    <span className="ml-2 text-yellow-400">
+                      - No se encontraron coincidencias
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Grid de participantes con scroll */}
+              <div
+                className="flex-1 overflow-y-auto overflow-x-hidden scroll-container"
+                style={{ height: "calc(100% - 2rem)" }}
+              >
+                <div className="space-y-3 pr-2">
+                  <AnimatePresence mode="popLayout">
+                    {(searchTerm ? filteredParticipants : participants).map(
+                      (participant, index) => (
+                        <motion.div
+                          key={participant.id}
+                          layout
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ duration: 0.3, delay: index * 0.02 }}
+                          className="bg-gray-800/60 border border-gray-700/50 rounded-lg p-4 backdrop-blur-sm hover:border-emerald-500/50 transition-all duration-300 group card-hover"
+                        >
+                          <div className="flex items-center justify-between">
+                            {/* Avatar y información principal */}
+                            <div className="flex items-center space-x-3 flex-1 min-w-0">
+                              <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg group-hover:shadow-emerald-500/30 transition-shadow flex-shrink-0">
+                                {participant.fullName.charAt(0).toUpperCase()}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-white font-medium text-sm group-hover:text-emerald-400 transition-colors truncate">
+                                  {participant.fullName}
+                                </h3>
+                                <p className="text-gray-400 text-xs truncate">
+                                  {participant.email}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Información secundaria */}
+                            <div className="text-right space-y-1 flex-shrink-0 ml-4">
+                              <div className="flex items-center justify-end text-gray-400 text-xs">
+                                <span className="mr-1">📱</span>
+                                <span className="truncate max-w-[100px]">
+                                  {formatPhone(participant.phone)}
+                                </span>
+                              </div>
+                              <div className="flex items-center justify-end text-gray-500 text-xs">
+                                <span className="mr-1">⏰</span>
+                                <span>{formatDate(participant.createdAt)}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )
+                    )}
+                  </AnimatePresence>
+                  {/* Espaciado inferior para evitar que el último elemento quede pegado */}
+                  <div className="h-4"></div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         {/* Mostrar si hay ganador anterior */}
         {winner && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-2xl p-6 backdrop-blur-sm"
+            className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-2xl p-6 backdrop-blur-sm flex-shrink-0"
           >
             <h3 className="text-xl font-bold text-white mb-4 flex items-center">
               <span className="mr-3">🏆</span>
@@ -232,13 +234,15 @@ export default function ParticipantsList({
         )}
       </div>
 
-      {/* Máquina de sorteo */}
-      <SorteoMachine
-        participants={participants}
-        isVisible={showSorteo}
-        onClose={() => setShowSorteo(false)}
-        onWinner={handleWinner}
-      />
+      {/* Máquina de sorteo - Portal para que aparezca en el centro de la pantalla */}
+      {showSorteo && (
+        <SorteoMachine
+          participants={participants}
+          isVisible={showSorteo}
+          onClose={() => setShowSorteo(false)}
+          onWinner={handleWinner}
+        />
+      )}
     </>
   );
 }
