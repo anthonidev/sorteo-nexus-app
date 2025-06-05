@@ -10,8 +10,7 @@ export async function getParticipants(): Promise<ParticipantsResponse> {
             headers: {
                 'Content-Type': 'application/json',
             },
-            // Cambiar a revalidate en lugar de no-store para permitir renderizado estático
-            next: { revalidate: 60 } // Revalidar cada 60 segundos
+            cache: 'no-store' // Ensure we always get the latest data
         })
 
         if (!response.ok) {
