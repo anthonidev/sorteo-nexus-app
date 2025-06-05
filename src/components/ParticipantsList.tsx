@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ParticipantListItem } from "@/lib/schemas/participants";
-import SorteoMachine from "./SorteoMachine";
+import SorteoMachine from "./sorteo/SorteoMachine";
 
 interface ParticipantsListProps {
   participants: ParticipantListItem[];

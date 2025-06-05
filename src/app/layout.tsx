@@ -25,7 +25,6 @@ export const metadata: Metadata = {
     "Nexus H. Global",
     "premio",
     "gratis",
-    "Perú",
     "tecnología",
   ],
   authors: [{ name: COMPANY_INFO.name }],

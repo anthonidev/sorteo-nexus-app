@@ -293,9 +293,9 @@ export default function ParticipantForm({
           </div>
           <div className="bg-gray-800/40 rounded-lg sm:rounded-xl p-2 sm:p-3 border border-gray-700/50 backdrop-blur-sm">
             <p className="text-emerald-400 text-xs sm:text-sm font-medium">
-              🇵🇪 Región
+              🗓️ Fecha del sorteo
             </p>
-            <p className="text-white text-xs">Solo Perú</p>
+            <p className="text-white text-xs"> 6 de Junio, 2025</p>
           </div>
         </div>
       </div>

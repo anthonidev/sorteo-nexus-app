@@ -24,6 +24,5 @@ export const SORTEO_INFO = {
     date: 'Viernes 6 de Junio, 2025',
     time: '8:00 PM (hora de Lima)',
     contact: 'Notificación por email y llamada telefónica',
-    rules: 'Válido solo para residentes de Perú mayores de 18 años',
     terms: 'Al participar aceptas los términos y condiciones de Nexus H. Global'
 } as const
