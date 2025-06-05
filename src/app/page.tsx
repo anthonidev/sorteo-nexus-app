@@ -4,31 +4,48 @@ import Loading from "./loading";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-black dark:to-purple-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto">
-        <Suspense fallback={<Loading />}>
-          <main className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8 sm:p-12">
-            <ParticipantFormWrapper />
-          </main>
-        </Suspense>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-emerald-900 py-8 px-4">
+      <div className="max-w-lg mx-auto">
+        {/* Header con countdown */}
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full mb-4 shadow-xl">
+            <span className="text-2xl">📱</span>
+          </div>
 
-        <div className="mt-8 text-center">
-          <div className="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-              🎁 Detalles del sorteo
-            </h3>
-            <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-              <p>📱 Premio: iPhone 16 Pro (128GB)</p>
-              <p>📅 Sorteo: Cada viernes del mes</p>
-              <p>🎯 Ganadores: Se contactan por email</p>
-              <p>✨ ¡Participa gratis y sin compromisos!</p>
-            </div>
+          <h1 className="text-2xl font-bold text-white mb-2">
+            Sorteo iPhone 16 Pro
+          </h1>
+
+          {/* Countdown compacto */}
+          <div className="bg-black/30 backdrop-blur-sm rounded-lg p-3 border border-green-500/20">
+            <p className="text-green-400 text-sm font-medium mb-1">
+              Sorteo este viernes
+            </p>
+            <p className="text-white text-lg font-bold">6 de Junio, 2025</p>
           </div>
         </div>
 
-        <footer className="mt-12 text-center text-xs text-gray-500 dark:text-gray-400">
-          <p>© 2025 Sorteo iPhone 16 Pro. Todos los derechos reservados.</p>
-          <p className="mt-1">Sorteo válido solo para residentes de Perú.</p>
+        <Suspense fallback={<Loading />}>
+          <main className="bg-gray-800/50 backdrop-blur-xl rounded-2xl border border-green-500/20 shadow-2xl overflow-hidden">
+            {/* Gradiente superior */}
+            <div className="h-1 bg-gradient-to-r from-green-400 via-emerald-500 to-green-600"></div>
+
+            <div className="p-6">
+              <ParticipantFormWrapper />
+            </div>
+          </main>
+        </Suspense>
+
+        {/* Footer compacto */}
+        <footer className="mt-8 text-center">
+          <div className="bg-black/20 backdrop-blur-sm rounded-lg p-4 border border-green-500/10">
+            <p className="text-green-400 text-xs font-medium mb-1">
+              🇵🇪 Válido solo para residentes de Perú
+            </p>
+            <p className="text-gray-400 text-xs">
+              © 2025 Sorteo iPhone 16 Pro. Sin compromisos.
+            </p>
+          </div>
         </footer>
       </div>
     </div>
