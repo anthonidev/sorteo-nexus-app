@@ -34,7 +34,6 @@ export default function SorteoMachine({
     showSadEmojis,
     eliminatingParticipant,
     isEliminationPhase,
-    sorteoStats,
     startSorteo,
     getSlotParticipants,
   } = useSorteoMachine({

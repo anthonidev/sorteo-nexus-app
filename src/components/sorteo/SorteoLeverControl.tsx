@@ -14,12 +14,10 @@ interface SorteoLeverControlProps {
 export default function SorteoLeverControl({
   isSpinning,
   showResult,
-  currentAttempt,
   remainingParticipants,
   onStartSorteo,
   onClose,
 }: SorteoLeverControlProps) {
-  const [isPulled, setIsPulled] = useState(false);
   const [isCharging, setIsCharging] = useState(false);
   const leverRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +32,6 @@ export default function SorteoLeverControl({
   const handleLeverPull = () => {
     if (!canStartSorteo) return;
 
-    setIsPulled(true);
     setIsCharging(true);
 
     // Reducir el movimiento para que se mantenga en el área visible
@@ -50,7 +47,6 @@ export default function SorteoLeverControl({
 
       setTimeout(() => {
         y.set(0);
-        setIsPulled(false);
       }, 500);
     }, 800);
   };

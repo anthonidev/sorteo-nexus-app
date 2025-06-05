@@ -37,8 +37,7 @@ declare global {
         interface ProcessEnv {
             API_BASE_URL: string
             NODE_ENV: 'development' | 'production' | 'test'
-            NEXT_PUBLIC_APP_URL?: string
-            NEXT_PUBLIC_ANALYTICS_ID?: string
+            ADMIN_PASSWORD: string
         }
     }
 }
