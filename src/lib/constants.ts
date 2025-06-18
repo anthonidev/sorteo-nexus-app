@@ -21,7 +21,7 @@ export const COMPANY_INFO = {
 export const SORTEO_INFO = {
     prize: 'iPhone 16 Pro (128GB) + Accesorios Premium',
     frequency: 'Sorteo especial mensual',
-    date: 'Viernes 6 de Junio, 2025',
+    date: 'Sabado 21 de Junio, 2025',
     time: '8:00 PM (hora de Lima)',
     contact: 'Notificación por email y llamada telefónica',
     terms: 'Al participar aceptas los términos y condiciones de Nexus H. Global'

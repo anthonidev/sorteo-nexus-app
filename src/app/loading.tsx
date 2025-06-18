@@ -49,7 +49,7 @@ export default function Loading() {
             <p className="text-emerald-400 text-sm font-medium">
               📱 iPhone 16 Pro (128GB)
             </p>
-            <p className="text-gray-400 text-xs">🗓️ Viernes 6 de Junio, 2025</p>
+            <p className="text-gray-400 text-xs">🗓️ Sabado 21 de Junio, 2025</p>
           </div>
         </div>
 

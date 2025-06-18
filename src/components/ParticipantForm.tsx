@@ -295,7 +295,7 @@ export default function ParticipantForm({
             <p className="text-emerald-400 text-xs sm:text-sm font-medium">
               🗓️ Fecha del sorteo
             </p>
-            <p className="text-white text-xs"> 6 de Junio, 2025</p>
+            <p className="text-white text-xs"> 21 de Junio, 2025</p>
           </div>
         </div>
       </div>

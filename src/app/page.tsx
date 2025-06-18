@@ -24,7 +24,7 @@ export default function Home() {
           </div>
 
           <h1 className="text-2xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4 bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent px-2">
-            Sorteo iPhone 16 Pro
+            Sorteo iPhone 16 Pro y un viaje a Colombia
           </h1>
 
           <div className="bg-gray-900/60 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-6 border border-emerald-500/30 shadow-lg shadow-emerald-500/20">
@@ -32,7 +32,7 @@ export default function Home() {
               ✨ Sorteo este viernes
             </p>
             <p className="text-white text-xl sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">
-              6 de Junio, 2025
+              21 de Junio, 2025
             </p>
           </div>
         </div>
@@ -50,8 +50,8 @@ export default function Home() {
         <footer className="mt-6 sm:mt-8 text-center">
           <div className="bg-gray-900/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-emerald-500/20">
             <p className="text-gray-400 text-xs">
-              © 2025 Sorteo iPhone 16 Pro. Participación gratuita y sin
-              compromisos.
+              © 2025 Sorteo iPhone 16 Pro y viaje a Colombia. Participación
+              gratuita y sin compromisos.
             </p>
           </div>
         </footer>
